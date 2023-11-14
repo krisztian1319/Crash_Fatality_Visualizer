@@ -1,0 +1,171 @@
+/* This is the final Project for Krisztian Pal for CS 4460. */
+
+
+body {
+    background-color: rgb(80, 79, 79);
+   
+}
+
+
+/* This styles the title of the page. */
+.titleHeader {
+    text-align: center;
+    font-size: 60px;
+    font-family: fantasy;
+    color: white;
+    left: 25%;
+  
+}
+
+.largeYear {
+    font-size: 50px;
+    font-family: fantasy;
+    color: black;
+}
+
+/* This styles the background of the SVG area where the plot will go. */
+.mainPlot {
+    background-color: rgb(255, 255, 255);
+    width: 400px;
+    height: 300px;
+    position: relative;
+    top: 250px;
+    left: 10px;
+    border: 8px;
+    border-style: solid;
+    position: absolute;
+
+}
+
+/* The legend plot is the overall legend to identify what each color represents.
+   Also, the fixed header will be visible throughout the entire site since it 
+   needs to be visible throughout. */
+.legendPlot {
+    background-color: rgb(255, 255, 255);
+    width: 300px;
+    height: 130px;
+    position: relative;
+    top: 5%;
+    left: 20px;
+}
+
+.fixedHeader {
+    width: 100%;
+    height: 230px;
+    background-color: rgb(48, 47, 47);
+    position: fixed;
+    left: 0%;
+    z-index: 1;
+    top: 0%;
+   
+    border: 7px;
+    border-style: solid;
+}
+
+/* This is a blank plot that will be used for copying. */
+.blankPlot {
+    background-color: rgb(255, 255, 255);
+    width: 400px;
+    height: 300px;
+    position: relative;
+    top: 250px;
+    left: 10px;
+    border: 8px;
+    border-style: solid;
+    position: absolute;
+}
+/* This styles the graph title. */
+.graphTitle {
+    font-size: large;
+    font-family: fantasy;
+}
+
+
+/* This sets the color of each legend box. */
+.legend1 {
+     fill: gold;
+}
+
+.legend2 {
+    fill: darkorange;
+}
+
+.legend3 {
+    fill: cornflowerblue;
+}
+
+.legend4 {
+    fill: darkblue;
+}
+
+.legend5 {
+    fill: darkviolet;
+}
+
+/* This sets the font and size of the legend in each indiviudal graph. */
+.percentL {
+    font-size: 15px;
+    font-family: fantasy;
+}
+
+/* This sets the font for teh legend test at the top of the page */
+#legendText {
+    font-family: fantasy;
+}
+
+.nameAndClass {
+    font-family: fantasy;
+    color: white;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    text-align: right;
+}
+
+/* This styles the text input box and the code below this is the style for the instructions. */
+#textInput {
+    position: absolute;
+    top: 80px;
+    left: 400px;
+    width: 500px;
+    height: 50px;
+    font-family: fantasy;
+    font-size: 30px;
+    border: 7px;
+    border-style: solid;
+}
+
+.instructions {
+    color: white;
+    width: 500px;
+    position: absolute;
+    top: 140px;
+    left: 405px;
+    font-family: fantasy;
+    font-size: 20px;
+}
+
+/*Below are teh stylings for the 2 buttons. */
+#enterButton {
+    color: black;
+    height: 50px;
+    width: 70px;
+    border: 7px;
+    border-style: solid;
+    font-family: fantasy;
+    position: absolute;
+    top: 80px;
+    left: 920px;
+}
+
+#resetButton {
+    color: black;
+    height: 50px;
+    width: 70px;
+    border: 7px;
+    border-style: solid;
+    font-family: fantasy;
+    position: absolute;
+    top: 80px;
+    left: 1000px;
+}

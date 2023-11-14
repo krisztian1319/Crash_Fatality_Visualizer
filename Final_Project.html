@@ -1,0 +1,130 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project</title>
+    <link rel="stylesheet" href="Style.css">
+  </head>
+  <body>
+    <main>
+      <!--NOTE!!!!!!
+          When running the file, you may need to zoom out the screen since
+          the scaling was based on a very large monitor with wierd aspect ratio.-->
+      <div class="fixedHeader">
+        <div class="titleHeader">
+          Transportation Deaths From 1975 To 2020
+        </div>
+
+        
+        <!--This creates the svg for the overall legend.-->
+        <svg class="legendPlot" id="legendPlot">
+          <rect class="legend1" id="legendTop1" x="10" y="10" width="20" height="10"></rect>  
+          <rect class="legend2" id="legendTop2" x="10" y="35" width="20" height="10"></rect> 
+          <rect class="legend3" id="legendTop3" x="10" y="60" width="20" height="10"></rect> 
+          <rect class="legend4" id="legendTop4" x="10" y="85" width="20" height="10"></rect> 
+          <rect class="legend5" id="legendTop5" x="10" y="110" width="20" height="10"></rect> 
+          
+          <text id="legendText" x="35" y="20"> Car Deaths </text>
+          <text id="legendText" x="35" y="45"> Pedestrian Deaths </text>
+          <text id="legendText" x="35" y="70"> Motorcycle Deaths </text>
+          <text id="legendText" x="35" y="95"> Bicycle Deaths </text>
+          <text id="legendText" x="35" y="120"> Truck Deaths </text>
+        </svg>
+
+        <!--Below is the text input and buttons to control the filtering of the data.-->
+        <input type="text" id="textInput" placeholder="INPUT YEAR(S) HERE">
+        <div class="instructions">
+          Please input a single year, a comma-separated list
+          of years, with no spaces, or two years separated by a dash
+
+        </div>
+        
+        <button type="button" id="enterButton" onclick="filterData();">ENTER</button>
+        <button type="button" id="resetButton" onclick="resetData();">RESET</button>
+
+        <!--This is just my name and class for identification.-->
+        <div class="nameAndClass">
+          Krisztian Pal <br>
+          CS 4460
+        </div>
+      </div>
+
+      <!--This is a simple empty scg plot that will be copied.-->
+      <svg class="blankPlot" id="blankPlot"></svg>
+
+
+      <!--This is a sample main donut chart that the small multiples will be based on.
+          This will not be seen when the site is done, but instead, it serves as a 
+          reference and guide for the rest of the visualizations. -->
+      <svg class="mainPlot" id="mainPlot">
+        <!--This is the title of each chart.-->
+        <text class="graphTitle" id="graphTitle" x="37" y="20" >Transportation Fatality Distribution For 1975</text>
+
+        <!--This will be where the donut plot will be overlayed.
+            This is the base template of the circle as well and
+            it will not be seen in the final product.-->
+        <circle class="outerRing" cx="200" cy="160"
+        r="120px" fill="black" ></circle>
+
+
+        <!--This will be the center circle that is white to give the effect of a donut chart.
+            This will not be changed.-->
+        <circle class="clearCenter" id="clearCenter" cx="200" cy="160"
+        r="80px" fill="white"></circle>
+
+        <!--These are the segments of the donut plot.
+            There will need to be 5 total segments:
+            1. Car  2. Pedestrian  3. Motorcycle  4. Bicycle  5. Trucks-->
+        <circle class="carPartition"  id="carPartition" cx="200" cy="160" r="100" 
+        fill="transparent" stroke="gold" stroke-width="40" 
+        stroke-dasharray="35.5% 177.5" ></circle>
+
+        <circle class="pedPartition" id="pedPartition" cx="200" cy="160" r="100" 
+        fill="transparent" stroke="darkorange" stroke-width="40" 
+        stroke-dasharray="0% 35.5% 35.5% 177.5" ></circle>
+
+        <circle class="motorPartition" id="motorPartition" cx="200" cy="160" r="100" 
+        fill="transparent" stroke="cornflowerblue" stroke-width="40" 
+        stroke-dasharray="0% 35.5% 0% 35.5% 35.5% 177.5" ></circle>
+
+        <circle class="bicyclePartition" id="bicyclePartition" cx="200" cy="160" r="100" 
+        fill="transparent" stroke="darkblue" stroke-width="40" 
+        stroke-dasharray="0% 35.5% 0% 35.5% 0% 35.5% 35.5% 177.5" ></circle>
+
+        <circle class="truckPartition" id="truckPartition" cx="200" cy="160" r="100" 
+        fill="transparent" stroke="darkviolet" stroke-width="40" 
+        stroke-dasharray="0% 35.5% 0% 35.5% 0% 35.5% 0% 35.5% 35.5% 177.5" ></circle>
+
+        <!--The above code creates 5 equally partitioned segments in a donut Plot.
+            The pattern for dash array goes filled segment, gap, filled segment, etc.
+            With the radius of the circle used, the proper full percentage for the dash
+            array is 177.5%. This means when calculating the percentage of each value, it 
+            will be out of 177.5% instead of 100%.-->
+
+        <!--The code below jsut creates a text for the larger year text.-->
+        <text class="largeYear" id="largeYear" x="292" y="295"> 1975 </text>
+
+        <!--This creates the legend that displays each percentage.-->
+        <rect class="legend1" id="legend1" x="10" y="100" width="20" height="20"></rect>  
+        <rect class="legend2" id="legend2" x="10" y="135" width="20" height="20"></rect> 
+        <rect class="legend3" id="legend3" x="10" y="170" width="20" height="20"></rect> 
+        <rect class="legend4" id="legend4" x="10" y="205" width="20" height="20"></rect> 
+        <rect class="legend5" id="legend5" x="10" y="240" width="20" height="20"></rect> 
+
+        <text class="percentL" id="percentL1" x="35" y="115"> 25% </text>
+        <text class="percentL" id="percentL2" x="35" y="150"> 25% </text>
+        <text class="percentL" id="percentL3" x="35" y="185"> 25% </text>
+        <text class="percentL" id="percentL4" x="35" y="220"> 25% </text>
+        <text class="percentL" id="percentL5" x="35" y="255"> 25% </text>
+      </svg>
+      
+
+
+    </main>
+
+  <!--The imports for the html file including d3.-->
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="Vis_Generator.js" ></script>
+
+  </body>
+</html>
